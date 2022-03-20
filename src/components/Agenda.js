@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Createtask from "./Createtask";
 import TaskCard from "./TaskCard";
+import { Container, Col } from "reactstrap";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 const Agenda = () => {
   const [modal, setModal] = useState(false);
@@ -48,7 +50,24 @@ const Agenda = () => {
           Create Agenda
         </button>
       </div>
-      <h2>All Agenda's</h2>
+
+      <Container>
+      <div  className="all-agenda">
+      <div>
+         <h2>All Agenda's</h2>
+      </div>
+      <div>
+      <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className="download-table-xls-button"
+        table="table-to-xls"
+        filename="Agenda"
+        sheet="tablexls"
+        buttonText="Export Agenda as XLS"
+        
+      />
+      </div>
+      </div>
       <div className="agenda-container" md={3}>
         {agendaList &&
           agendaList.map((obj, index) => (
@@ -61,6 +80,26 @@ const Agenda = () => {
           ))}
       </div>
       <Createtask toggle={toggle} modal={modal} save={saveTask} />
+     
+      <table id="table-to-xls" className="d-none">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {agendaList.map(obj => (
+            <tr>
+              <td>{obj.Title}</td>
+              <td>{obj.Description}</td>
+              {/* <td>{item.age}</td> */}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </Container>
     </>
   );
 };

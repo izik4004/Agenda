@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form } from "reactstrap";
 
 const Createtask = ({ modal, toggle, save }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+//   const [date, setDescription] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +27,7 @@ const Createtask = ({ modal, toggle, save }) => {
     <Modal isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle}>Create Agenda</ModalHeader>
       <ModalBody>
-        <form>
+        <Form>
           <div className="form-group">
             <label>Title</label>
             <input
@@ -37,7 +38,7 @@ const Createtask = ({ modal, toggle, save }) => {
               onChange={handleChange}
             />
           </div>
-          <label>Description</label>
+          <label className="mt-4">Description</label>
           <div className="form-group">
             <textarea
               name="description"
@@ -49,8 +50,16 @@ const Createtask = ({ modal, toggle, save }) => {
               onChange={handleChange}
             ></textarea>
           </div>
-          
-        </form>
+          <div>
+            <Input
+                className="mt-4"
+                bsSize="lg"
+                type="date"
+                // value={date}
+                onChange={handleChange}
+            />
+            </div>
+        </Form>
       </ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={handleSave}>
@@ -61,6 +70,7 @@ const Createtask = ({ modal, toggle, save }) => {
         </Button>
       </ModalFooter>
     </Modal>
+   
   );
 };
 

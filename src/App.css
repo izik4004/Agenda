@@ -27,3 +27,24 @@
   align-items: center;
   gap: 20px;
 }
+
+.all-agenda {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.download-table-xls-button {
+  background-color:white ;
+  border: 1px solid orange;
+  border-radius: 6px;
+  height: 40px;
+  
+}
+
+.download-table-xls-button:hover {
+  background-color: orange;
+  color: white;
+}
