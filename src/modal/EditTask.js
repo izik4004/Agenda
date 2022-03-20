@@ -35,10 +35,11 @@ const EditTask = ({ modal, toggle, updateAgenda, agendaObj }) => {
   };
 
   useEffect(() => {
+    // agendaObj();
     setTitle(agendaObj.Title);
     setDescription(agendaObj.Description);
     setDate(agendaObj.Date);
-  }, []);
+  }, [agendaObj]) ;
   return (
     <Modal isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle}>Update Agenda</ModalHeader>
