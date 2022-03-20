@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Createtask from "./Createtask";
+import Createtask from "../modal/Createtask";
 import TaskCard from "./TaskCard";
-import { Container, Col } from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 const Agenda = () => {
@@ -50,55 +50,56 @@ const Agenda = () => {
           Create Agenda
         </button>
       </div>
-
       <Container>
-      <div  className="all-agenda">
-      <div>
-         <h2>All Agenda's</h2>
-      </div>
-      <div>
-      <ReactHTMLTableToExcel
-        id="test-table-xls-button"
-        className="download-table-xls-button"
-        table="table-to-xls"
-        filename="Agenda"
-        sheet="tablexls"
-        buttonText="Export Agenda as XLS"
-        
-      />
-      </div>
-      </div>
-      <div className="agenda-container" md={3}>
-        {agendaList &&
-          agendaList.map((obj, index) => (
-            <TaskCard
-              agendaObj={obj}
-              index={index}
-              deleteTask={deleteTask}
-              updateListArray={updateListArray}
+        <div className="all-agenda">
+          <div>
+            <h2>All Agenda's</h2>
+          </div>
+          <div>
+            <ReactHTMLTableToExcel
+              id="test-table-xls-button"
+              className="download-table-xls-button"
+              table="table-to-xls"
+              filename="Agenda"
+              sheet="tablexls"
+              buttonText="Export Agenda as XLS"
             />
-          ))}
-      </div>
-      <Createtask toggle={toggle} modal={modal} save={saveTask} />
-     
-      <table id="table-to-xls" className="d-none">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {agendaList.map(obj => (
+          </div>
+        </div>
+
+        <Row>
+          {agendaList &&
+            agendaList.map((obj, index) => (
+              <Col md="4">
+                <TaskCard
+                  agendaObj={obj}
+                  index={index}
+                  deleteTask={deleteTask}
+                  updateListArray={updateListArray}
+                />
+              </Col>
+            ))}
+        </Row>
+        <Createtask toggle={toggle} modal={modal} save={saveTask} />
+
+        <table id="table-to-xls" className="d-none">
+          <thead>
             <tr>
-              <td>{obj.Title}</td>
-              <td>{obj.Description}</td>
-              {/* <td>{item.age}</td> */}
+              <th>Title</th>
+              <th>Description</th>
+              <th>Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {agendaList.map((obj) => (
+              <tr>
+                <td>{obj.Title}</td>
+                <td>{obj.Description}</td>
+                <td>{obj.Date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </Container>
     </>
   );

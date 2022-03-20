@@ -9,12 +9,6 @@
   justify-content: center;
 }
 
-.agenda-container {
-  display: flex;
-  padding: 10px;
-  align-content: center;
-  justify-content: left;
-}
 
 .footer {
   display: flex;
@@ -33,7 +27,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 10px;
-  padding-left: 18px;
+  padding-left: 15px;
+  
 }
 
 .download-table-xls-button {
@@ -47,4 +42,9 @@
 .download-table-xls-button:hover {
   background-color: orange;
   color: white;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
 }

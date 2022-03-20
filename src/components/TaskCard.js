@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import EditTask from "./EditTask";
+import EditTask from "../modal/EditTask";
 import { useState } from "react";
 // import '../App.css'
 
@@ -37,7 +37,7 @@ const TaskCard = ({ index, agendaObj, deleteTask, updateListArray }) => {
           </CardBody>
           <CardFooter className="footer">
           <div>
-            <h5>izik</h5>
+            <h5>{agendaObj.Date}</h5>
           </div>
           <div className="icons">
             <BiEdit

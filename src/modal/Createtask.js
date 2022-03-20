@@ -1,18 +1,29 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form } from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+  Form,
+} from "reactstrap";
 
 const Createtask = ({ modal, toggle, save }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-//   const [date, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  //   const [date, setDescription] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "title") {
       setTitle(value);
-    } else {
+    } else if (name === "description") {
       setDescription(value);
+    } else {
+      setDate(value);
     }
   };
 
@@ -20,6 +31,7 @@ const Createtask = ({ modal, toggle, save }) => {
     let agendaObj = {};
     agendaObj["Title"] = title;
     agendaObj["Description"] = description;
+    agendaObj["Date"] = date;
     save(agendaObj);
   };
 
@@ -36,6 +48,7 @@ const Createtask = ({ modal, toggle, save }) => {
               className="form-control"
               value={title}
               onChange={handleChange}
+              
             />
           </div>
           <label className="mt-4">Description</label>
@@ -48,17 +61,20 @@ const Createtask = ({ modal, toggle, save }) => {
               className="form-control"
               value={description}
               onChange={handleChange}
+              
             ></textarea>
           </div>
           <div>
+            <label className="mt-4">Date</label>
             <Input
-                className="mt-4"
-                bsSize="lg"
-                type="date"
-                // value={date}
-                onChange={handleChange}
+              className="mt-4"
+              bsSize="lg"
+              type="date"
+              name="date"
+              value={date}
+              onChange={handleChange}
             />
-            </div>
+          </div>
         </Form>
       </ModalBody>
       <ModalFooter>
@@ -70,7 +86,6 @@ const Createtask = ({ modal, toggle, save }) => {
         </Button>
       </ModalFooter>
     </Modal>
-   
   );
 };
 

@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+} from "reactstrap";
 
 const EditTask = ({ modal, toggle, updateAgenda, agendaObj }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "title") {
       setTitle(value);
-    } else {
+    } else if (name === "description") {
       setDescription(value);
+    } else {
+      setDate(value);
     }
   };
 
@@ -20,12 +30,14 @@ const EditTask = ({ modal, toggle, updateAgenda, agendaObj }) => {
     let tempObj = {};
     tempObj["Title"] = title;
     tempObj["Description"] = description;
+    tempObj["Date"] = date;
     updateAgenda(tempObj);
   };
 
   useEffect(() => {
     setTitle(agendaObj.Title);
     setDescription(agendaObj.Description);
+    setDate(agendaObj.Date);
   }, []);
   return (
     <Modal isOpen={modal} toggle={toggle}>
@@ -54,6 +66,15 @@ const EditTask = ({ modal, toggle, updateAgenda, agendaObj }) => {
               onChange={handleChange}
             ></textarea>
           </div>
+          <label className="mt-4">Date</label>
+          <Input
+            className="mt-4"
+            bsSize="lg"
+            type="date"
+            name="date"
+            value={date}
+            onChange={handleChange}
+          />
         </form>
       </ModalBody>
       <ModalFooter>
